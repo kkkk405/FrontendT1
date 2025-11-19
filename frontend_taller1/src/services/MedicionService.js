@@ -35,3 +35,9 @@ export const deleteMedicion = (id) => {
 export const filtrarPorTipo = (tipo) => {
   return getMediciones().filter(m => m.tipo === tipo);
 };
+
+export const addMedicion = (medicion) => {
+  const data = getMediciones();
+  data.push(medicion);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+};

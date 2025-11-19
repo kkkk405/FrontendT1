@@ -13,7 +13,10 @@ const MedicionesExistentes = () => {
   const toast = useRef(null);
 
   useEffect(() => {
-    setMediciones(getMediciones());
+    setMediciones(getMediciones()); // <-- carga inicial
+    const handleStorage = () => setMediciones(getMediciones());
+    window.addEventListener('storage', handleStorage);
+    return () => window.removeEventListener('storage', handleStorage);
   }, []);
 
   const handleDelete = (id) => {
@@ -50,7 +53,11 @@ const MedicionesExistentes = () => {
     />
   );
 
-  const tipos = ['Kilowatts', 'Watts', 'Temperatura'];
+  const tipos = [
+    { label: 'Kilowatts', value: 'Kilowatts' },
+    { label: 'Watts', value: 'Watts' },
+    { label: 'Temperatura', value: 'Temperatura' }
+  ];
 
   return (
     <div className="container mt-4">

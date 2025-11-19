@@ -69,3 +69,17 @@ button:focus-visible {
 .p-menubar a {
     text-decoration: none !important;
 }
+
+.calendar-rounded-icon .p-datepicker-trigger {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.active-navbar-item {
+    background-color: #e0e7ff !important;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    color: #2c3e50 !important;
+}
