@@ -42,11 +42,10 @@ const MedicionesExistentes = () => {
 
   const accionesTemplate = (row) => (
     <Button
+      label='Descartar Lectura'
       icon="pi pi-trash"
       severity="danger"
-      text
       onClick={() => handleDelete(row.id)}
-      tooltip="Descartar Lectura"
     />
   );
 
