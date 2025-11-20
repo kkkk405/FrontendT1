@@ -74,8 +74,8 @@ export default function MedicionesExistentes() {
                         onChange={(e) => setTipoFiltro(e.value)}
                         placeholder="Filtrar por tipo"
                     />
-                    <Button label="Filtrar" icon="pi pi-filter" onClick={filtrarMediciones} />
-                    <Button label="Limpiar" icon="pi pi-times" className="p-button-secondary" onClick={limpiarFiltro} />
+                    <Button label="Filtrar" icon="pi pi-filter" className="rounded" onClick={filtrarMediciones} />
+                    <Button label="Limpiar" icon="pi pi-times" className="p-button-secondary rounded" onClick={limpiarFiltro} />
                 </div>
 
                 <DataTable
