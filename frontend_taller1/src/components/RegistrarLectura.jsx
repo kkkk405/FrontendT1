@@ -8,7 +8,7 @@ import { InputNumber } from 'primereact/inputnumber';
 import { RadioButton } from 'primereact/radiobutton';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
-import { addMedicion } from '../services/MedicionService';
+import { agregarMedicion } from '../services/MedicionService';
 
 function generarOpcionesMedidor() {
     return Array.from({ length: 10 }, (_, i) => {
@@ -79,7 +79,7 @@ export default function RegistrarLectura() {
             tipo: tipoMedida
         };
 
-        addMedicion(nuevaLectura);
+        agregarMedicion(nuevaLectura);
 
         toast.current.show({
             severity: 'success',

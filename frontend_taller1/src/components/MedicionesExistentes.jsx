@@ -5,7 +5,7 @@ import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { getMediciones, deleteMedicion } from '../services/MedicionService';
+import { obtenerMediciones, eliminarMedicion } from '../services/MedicionService';
 
 const opcionesTipoMedida = [
     { label: 'Kilowatts', value: 'Kilowatts' },
@@ -42,15 +42,15 @@ export default function MedicionesExistentes() {
     const toast = useRef(null);
 
     useEffect(() => {
-        setListaMediciones(getMediciones());
+        setListaMediciones(obtenerMediciones());
         const actualizarMediciones = () => setListaMediciones(getMediciones());
         window.addEventListener('storage', actualizarMediciones);
         return () => window.removeEventListener('storage', actualizarMediciones);
     }, []);
 
     function descartarMedicion(id) {
-        deleteMedicion(id);
-        setListaMediciones(getMediciones());
+        eliminarMedicion(id);
+        setListaMediciones(obtenerMediciones());
         toast.current.show({
             severity: 'info',
             summary: 'Lectura descartada',
@@ -60,10 +60,10 @@ export default function MedicionesExistentes() {
 
     function filtrarMediciones() {
         if (tipoFiltro) {
-            const filtradas = getMediciones().filter(medicion => medicion.tipo === tipoFiltro);
+            const filtradas = obtenerMediciones().filter(medicion => medicion.tipo === tipoFiltro);
             setListaMediciones(filtradas);
         } else {
-            setListaMediciones(getMediciones());
+            setListaMediciones(obtenerMediciones());
         }
     }
 
@@ -81,7 +81,14 @@ export default function MedicionesExistentes() {
                     <Button label="Filtrar" icon="pi pi-filter" onClick={filtrarMediciones} />
                 </div>
 
-                <DataTable value={listaMediciones} paginator rows={5} sortField="fecha" sortOrder={-1}>
+                <DataTable
+                    value={listaMediciones}
+                    paginator
+                    rows={5}
+                    sortField="fecha"
+                    sortOrder={-1}
+                    emptyMessage="No hay mediciones registradas"
+                >
                     <Column field="fecha" header="Fecha" sortable />
                     <Column field="hora" header="Hora" />
                     <Column field="medidor" header="Medidor" />
